@@ -4,13 +4,125 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      body {
+        background: linear-gradient(45deg, #240165, #05001c);
+        color: white;
+        /* width: 100vh;
+        height: 100vh; */
+        font-family: sans-serif;
+      }
+
+      .card {
+        width: 15%;
+        height: 100%;
+        background-color: rgb(57, 77, 130);
+        font-size: 20px;
+        box-shadow: 0px 10px 5px rgb(0 0 0 /30%);
+      }
+      .header {
+        color: white;
+        background-color: rgb(91, 125, 219);
+        font-weight: 400;
+      }
+      .header h1 {
+        padding: 10px;
+        font-weight: 400;
+        font-size: 24px;
+      }
+
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
   </head>
   <body>
-    <div>
+    <div id="">
       <!-- city name + date  -->
       <div>
-        <div>
-          <h1>baghdad</h1>
+        <!-- city name -->
+        <div style="margin-left: 20px; margin-top: 20px">
+          <h1 id="city-name" style="font-size: 70px">baghdad</h1>
+          <h6 style="font-size: 20px; margin-top: 10px">Friday: 34 NOV</h6>
+        </div>
+
+        <hr style="margin: 0px 10px" />
+
+        <div class="" style=" width: 100%; height: 100%;  margin-top: 80px; display: flex; justify-content: space-evenly;
+          "
+        >
+
+        <!-- card -->
+          <div class="card">
+            <div class="header">
+              <h1>al fajar</h1>
+            </div>
+
+            <div class="body center" style="height: 100%; ">
+              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="header">
+              <h1>al fajar</h1>
+            </div>
+
+            <div class="body center" style="height: 100%; ">
+              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="header">
+              <h1>al fajar</h1>
+            </div>
+
+            <div class="body center" style="height: 100%; ">
+              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="header">
+              <h1>al fajar</h1>
+            </div>
+
+            <div class="body center" style="height: 100%; ">
+              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+            </div>
+          </div>
+          <div class="card">
+            <div class="header">
+              <h1>al fajar</h1>
+            </div>
+
+            <div class="body center" style="height: 100%; ">
+              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+            </div>
+          </div>
+        <!--/ card //-->
+
+
+
+
+
+          </div>
+
+
+          <!-- change city select -->
+           <div class="center" style="margin-top: 120px;">
+            <select name="" style="width: 240px; height: 30px; font-size: 20px;" id="">
+                <option value="">baghdad </option>
+                <option value="">najaf</option>
+                <option value="">basra</option>
+                <option value="">erbil</option>
+            </select>
+
+           </div>
         </div>
       </div>
     </div>
