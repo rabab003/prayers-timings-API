@@ -49,7 +49,7 @@
         <!-- city name -->
         <div style="margin-left: 20px; margin-top: 20px">
           <h1 id="city-name" style="font-size: 70px">baghdad</h1>
-          <h6 style="font-size: 20px; margin-top: 10px">Friday: 34 NOV</h6>
+          <h6 id="date" style="font-size: 20px; margin-top: 10px">Friday: 34 NOV</h6>
         </div>
 
         <hr style="margin: 0px 10px" />
@@ -115,11 +115,7 @@
 
           <!-- change city select -->
            <div class="center" style="margin-top: 120px;">
-            <select name="" style="width: 240px; height: 30px; font-size: 20px;" id="">
-                <option value="">baghdad </option>
-                <option value="">najaf</option>
-                <option value="">basra</option>
-                <option value="">erbil</option>
+            <select id="cities-select" name="" style="width: 240px; height: 30px; font-size: 20px;" id="">
             </select>
 
            </div>
@@ -132,12 +128,58 @@
 
   <script>
 
-    let params = {
-      country:"IQ",
-      city:"NA"
+    let cities = [
+      {
+        arabicName:"najaf",
+        name:"NA"
+      },
+      {
+        arabicName:"anbar",
+        name:"AN"
+      },
+      {
+        arabicName:"basrah",
+        name:"BA"
+      },
+      {
+        arabicName:"babil",
+        name:"BB"
+      }
+    ]
+
+    for(let city of cities) {
+      const content = `
+      <option>${city.arabicName}<option/>
+      `
+
+      document.getElementById("cities-select").innerHTML += content
     }
 
+    document.getElementById("cities-select").addEventListener("change", function(){
 
+      document.getElementById("city-name").innerHTML =this.value
+
+
+      let cityName = ""
+      for(let city of cities){
+        if(city.arabicName == this.value){
+          cityName = city.name
+        }
+      }
+
+      getPrayersTimingsOfCity(cityName)
+      
+    })
+
+
+
+
+  function getPrayersTimingsOfCity(cityName){
+
+    let params = {
+      country:"IQ",
+      city:cityName
+    }
 
     axios.get('https://api.aladhan.com/v1/timingsByCity', {
     params: params
@@ -152,7 +194,18 @@
     fillTimeForPrayer("asr",timings.Asr)
     fillTimeForPrayer("sunset",timings.Sunset)
     fillTimeForPrayer("isha",timings.Isha)
+
+    const readableDate = response.data.data.date.readable;
+    const weekday = response.data.data.date.hijri.weekday.en
+    const date = readableDate + " " + weekday;
+
+    document.getElementById("date").innerHTML = date
+
+    console.log(readableDate)
+    console.log(weekday)
   })
+
+
   .catch(function (error) {
     console.log(error);
   })
@@ -161,13 +214,19 @@
     // always executed
   }); 
 
+
+  }
+
+
+  getPrayersTimingsOfCity("NA")
+
+
   function fillTimeForPrayer(id,time){
     document.getElementById(id).innerHTML = time
-    console.log(time)
   }
+
   </script>
 
 
 </html>
 
-<!-- 1:03:10  -->
