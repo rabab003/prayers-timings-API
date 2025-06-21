@@ -61,47 +61,47 @@
         <!-- card -->
           <div class="card">
             <div class="header">
-              <h1>al fajar</h1>
+              <h1>Fajar</h1>
             </div>
 
             <div class="body center" style="height: 100%; ">
-              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+              <h1  id="fajar" class="time" style="font-size: 20px;">4:00 PM</h1>
             </div>
           </div>
           <div class="card">
             <div class="header">
-              <h1>al fajar</h1>
+              <h1>Dhuhr </h1>
             </div>
 
             <div class="body center" style="height: 100%; ">
-              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+              <h1  id="dhuhr" class="time" style="font-size: 20px;">4:00 PM</h1>
             </div>
           </div>
           <div class="card">
             <div class="header">
-              <h1>al fajar</h1>
+              <h1>Asr</h1>
             </div>
 
             <div class="body center" style="height: 100%; ">
-              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+              <h1  id="asr" class="time" style="font-size: 20px;">4:00 PM</h1>
             </div>
           </div>
           <div class="card">
             <div class="header">
-              <h1>al fajar</h1>
+              <h1 >Sunset</h1>
             </div>
 
             <div class="body center" style="height: 100%; ">
-              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+              <h1 id="sunset" class="time" style="font-size: 20px;">4:00 PM</h1>
             </div>
           </div>
           <div class="card">
             <div class="header">
-              <h1>al fajar</h1>
+              <h1 >Isha</h1>
             </div>
 
             <div class="body center" style="height: 100%; ">
-              <h1 class="time" style="font-size: 20px;">4:00 PM</h1>
+              <h1 id="isha" class="time" style="font-size: 20px;">4:00 PM</h1>
             </div>
           </div>
         <!--/ card //-->
@@ -127,4 +127,47 @@
       </div>
     </div>
   </body>
+
+  <script src="./node_modules/axios/dist/axios.min.js"></script>
+
+  <script>
+
+    let params = {
+      country:"IQ",
+      city:"NA"
+    }
+
+
+
+    axios.get('https://api.aladhan.com/v1/timingsByCity', {
+    params: params
+  })
+  .then(function (response) {
+
+    const timings = response.data.data.timings;
+    // document.getElementById("fajar").innerHTML = timings.Fajr
+
+    fillTimeForPrayer("fajar",timings.Fajr)
+    fillTimeForPrayer("dhuhr",timings.Dhuhr)
+    fillTimeForPrayer("asr",timings.Asr)
+    fillTimeForPrayer("sunset",timings.Sunset)
+    fillTimeForPrayer("isha",timings.Isha)
+  })
+  .catch(function (error) {
+    console.log(error);
+  })
+
+  .finally(function () {
+    // always executed
+  }); 
+
+  function fillTimeForPrayer(id,time){
+    document.getElementById(id).innerHTML = time
+    console.log(time)
+  }
+  </script>
+
+
 </html>
+
+<!-- 1:03:10  -->
